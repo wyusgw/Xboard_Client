@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bottom Navigation dimensions -->
+    <dimen name="bottom_navigation_height">72dp</dimen>
+    <dimen name="bottom_navigation_padding_top">4dp</dimen>
+    <dimen name="bottom_navigation_padding_bottom">4dp</dimen>
+    <dimen name="bottom_navigation_icon_size">16dp</dimen>
+    <dimen name="bottom_navigation_elevation">6dp</dimen>
+    <dimen name="bottom_navigation_text_size">11sp</dimen>
+</resources>

@@ -5,7 +5,8 @@
       "Bash(copy:*)",
       "Bash(cp:*)",
       "WebFetch(domain:shop.starpro.one)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

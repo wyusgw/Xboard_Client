@@ -97,9 +97,11 @@
     
     <!-- Custom Tab Text Appearance -->
     <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/bottom_navigation_text_size</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:letterSpacing">0</item>
+        <item name="android:lineSpacingMultiplier">0.8</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 </resources>

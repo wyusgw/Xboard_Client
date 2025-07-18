@@ -21,10 +21,15 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.byteflow.www.ApiClient
 import com.byteflow.www.R
+import com.byteflow.www.SubscribeInfo
+import com.byteflow.www.UserInfo
 import com.byteflow.www.databinding.FragmentHomeBinding
 import com.byteflow.www.service.LeafVpnService
 import com.byteflow.www.utils.SubscriptionManager
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -36,6 +41,9 @@ class HomeFragment : Fragment() {
     private var isBound = false
     private lateinit var sharedPreferences: SharedPreferences
     private val subscriptionManager = SubscriptionManager.getInstance()
+    
+    private var userInfo: UserInfo? = null
+    private var subscribeInfo: SubscribeInfo? = null
     
     companion object {
         private const val TAG = "HomeFragment"
@@ -94,13 +102,79 @@ class HomeFragment : Fragment() {
         setupClickListeners()
         updateConnectionStatus()
         updateSubscriptionStatus()
+        loadUserData()
     }
 
     private fun setupViews() {
-        // Set initial data
-        binding.dataUsedText.text = "已使用: 2.5 GB"
-        binding.dataRemainingText.text = "剩余: 97.5 GB"
+        // 初始显示加载中状态
+        binding.dataUsedText.text = "加载中..."
+        binding.dataRemainingText.text = "加载中..."
         updateServerSelection()
+    }
+    
+    private fun loadUserData() {
+        lifecycleScope.launch {
+            try {
+                // 获取用户信息
+                val userResult = ApiClient.getUserInfo()
+                if (userResult.isSuccess) {
+                    userInfo = userResult.getOrNull()
+                }
+                
+                // 获取订阅信息
+                val subscribeResult = ApiClient.getSubscribeInfo()
+                if (subscribeResult.isSuccess) {
+                    subscribeInfo = subscribeResult.getOrNull()
+                }
+                
+                // 更新流量显示
+                updateDataUsage()
+                
+            } catch (e: Exception) {
+                Log.e(TAG, "加载用户数据失败", e)
+                // 显示错误状态
+                binding.dataUsedText.text = "加载失败"
+                binding.dataRemainingText.text = "加载失败"
+            }
+        }
+    }
+    
+    private fun updateDataUsage() {
+        subscribeInfo?.let { subscribe ->
+            // 设置流量信息 - API返回的是字节，需要转换为GB
+            val totalBytes = subscribe.transferEnable
+            val usedBytes = subscribe.u + subscribe.d
+            val remainingBytes = totalBytes - usedBytes
+            
+            // 转换为GB格式显示
+            val usedGB = formatBytes(usedBytes)
+            val remainingGB = formatBytes(remainingBytes)
+            
+            binding.dataUsedText.text = "已使用: $usedGB"
+            binding.dataRemainingText.text = "剩余: $remainingGB"
+        } ?: run {
+            // 如果没有订阅信息，显示默认状态
+            binding.dataUsedText.text = "暂无数据"
+            binding.dataRemainingText.text = "暂无数据"
+        }
+    }
+    
+    private fun formatBytes(bytes: Long): String {
+        return when {
+            bytes >= 1024L * 1024L * 1024L -> {
+                val gb = bytes / (1024.0 * 1024.0 * 1024.0)
+                "${String.format("%.1f", gb)}GB"
+            }
+            bytes >= 1024L * 1024L -> {
+                val mb = bytes / (1024.0 * 1024.0)
+                "${String.format("%.0f", mb)}MB"
+            }
+            bytes >= 1024L -> {
+                val kb = bytes / 1024.0
+                "${String.format("%.0f", kb)}KB"
+            }
+            else -> "${bytes}B"
+        }
     }
 
     private fun setupClickListeners() {
