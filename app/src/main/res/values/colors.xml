@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- iOS Blue theme colors -->
+    <color name="primary_blue">#007AFF</color>
+    <color name="primary_blue_dark">#0056D6</color>
+    <color name="primary_blue_light">#4DA6FF</color>
+    
+    <!-- Background colors -->
+    <color name="background_primary">#FFFFFF</color>
+    <color name="background_secondary">#F2F2F7</color>
+    <color name="background_tertiary">#FFFFFF</color>
+    <color name="background_grouped">#F2F2F7</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#6D6D80</color>
+    <color name="text_tertiary">#C7C7CC</color>
+    <color name="text_white">#FFFFFF</color>
+    
+    <!-- System colors -->
+    <color name="separator_color">#C6C6C8</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="success_green">#34C759</color>
+    <color name="warning_orange">#FF9500</color>
+    <color name="error_red">#FF3B30</color>
+    
+    <!-- Tab bar colors -->
+    <color name="tab_selected">#007AFF</color>
+    <color name="tab_unselected">#8E8E93</color>
+    
+    <!-- Status colors for VPN -->
+    <color name="status_connected">#34C759</color>
+    <color name="status_connecting">#FF9500</color>
+    <color name="status_disconnected">#8E8E93</color>
+    
+    <!-- Compatibility colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#8E8E93</color>
+    <color name="gray_light">#E5E5EA</color>
+</resources>

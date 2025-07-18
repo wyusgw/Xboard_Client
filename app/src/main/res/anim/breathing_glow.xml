@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:repeatCount="infinite"
+    android:repeatMode="reverse">
+    
+    <!-- 阴影elevation呼吸效果 -->
+    <objectAnimator
+        android:propertyName="elevation"
+        android:duration="1500"
+        android:valueFrom="8dp"
+        android:valueTo="24dp"
+        android:valueType="floatType"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator" />
+        
+</set>

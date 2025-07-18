@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    
+    <!-- 连接状态的蓝色背景 -->
+    <solid android:color="@color/primary_blue" />
+    
+    <!-- 发光边框效果 -->
+    <stroke 
+        android:width="2dp"
+        android:color="@color/primary_blue_light" />
+    
+    <!-- 径向渐变 -->
+    <gradient
+        android:type="radial"
+        android:gradientRadius="70dp"
+        android:centerColor="@color/primary_blue"
+        android:endColor="@color/primary_blue_dark"
+        android:startColor="@color/primary_blue_light" />
+        
+</shape>

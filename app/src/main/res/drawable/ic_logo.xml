@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <!-- VPN Shield Background -->
+    <path
+        android:fillColor="@color/primary_blue"
+        android:pathData="M12,2L3,7v5c0,5.55 3.84,10.74 9,12c5.16,-1.26 9,-6.45 9,-12V7L12,2z"/>
+    
+    <!-- Network Lines -->
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M12,4.5l6.5,3.5v3.5c0,4.5 -3,8.5 -6.5,9.5c-3.5,-1 -6.5,-5 -6.5,-9.5V8L12,4.5z"/>
+    
+    <!-- Inner Network Icon -->
+    <path
+        android:fillColor="@color/primary_blue"
+        android:pathData="M12,6c-2.5,0 -4.5,2 -4.5,4.5s2,4.5 4.5,4.5s4.5,-2 4.5,-4.5S14.5,6 12,6z"/>
+    
+    <!-- Connection Dot Center -->
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M12,10.5m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0"/>
+    
+    <!-- Connection Dot Left -->
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M9,12m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+    
+    <!-- Connection Dot Right -->
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M15,12m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+    
+    <!-- Connection Dot Bottom -->
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M12,13.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+        
+</vector>

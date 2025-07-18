@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(copy:*)",
+      "Bash(cp:*)",
+      "WebFetch(domain:shop.starpro.one)",
+      "Bash(touch:*)"
+    ],
+    "deny": []
+  }
+}

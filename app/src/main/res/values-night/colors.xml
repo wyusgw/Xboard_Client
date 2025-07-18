@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- iOS Blue theme colors (dark mode) -->
+    <color name="primary_blue">#0A84FF</color>
+    <color name="primary_blue_dark">#007AFF</color>
+    <color name="primary_blue_light">#64D2FF</color>
+    
+    <!-- Background colors (dark mode) -->
+    <color name="background_primary">#000000</color>
+    <color name="background_secondary">#1C1C1E</color>
+    <color name="background_tertiary">#2C2C2E</color>
+    <color name="background_grouped">#1C1C1E</color>
+    
+    <!-- Text colors (dark mode) -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#8E8E93</color>
+    <color name="text_tertiary">#48484A</color>
+    <color name="text_white">#FFFFFF</color>
+    
+    <!-- System colors (dark mode) -->
+    <color name="separator_color">#38383A</color>
+    <color name="card_background">#1C1C1E</color>
+    <color name="success_green">#30D158</color>
+    <color name="warning_orange">#FF9F0A</color>
+    <color name="error_red">#FF453A</color>
+    
+    <!-- Tab bar colors (dark mode) -->
+    <color name="tab_selected">#0A84FF</color>
+    <color name="tab_unselected">#8E8E93</color>
+    
+    <!-- Status colors for VPN (dark mode) -->
+    <color name="status_connected">#30D158</color>
+    <color name="status_connecting">#FF9F0A</color>
+    <color name="status_disconnected">#8E8E93</color>
+</resources>

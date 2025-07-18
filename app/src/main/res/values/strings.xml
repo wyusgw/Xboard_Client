@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">ByteFlow</string>
+    
+    <!-- Tab Bar -->
+    <string name="tab_home">首页</string>
+    <string name="tab_servers">节点</string>
+    <string name="tab_plans">套餐</string>
+    <string name="tab_profile">我的</string>
+    
+    <!-- Home Screen -->
+    <string name="connection_status_connected">已连接</string>
+    <string name="connection_status_disconnected">未连接</string>
+    <string name="connection_status_connecting">连接中</string>
+    <string name="connect">连接</string>
+    <string name="disconnect">断开连接</string>
+    <string name="data_usage">流量使用情况</string>
+    <string name="current_server">当前节点</string>
+    
+    <!-- Servers Screen -->
+    <string name="select_server">选择节点</string>
+    <string name="server_load">负载</string>
+    <string name="server_ping">延迟</string>
+    
+    <!-- Plans Screen -->
+    <string name="plans_title">套餐列表</string>
+    <string name="popular">热门</string>
+    <string name="current">当前</string>
+    <string name="select_plan">选择套餐</string>
+    <string name="current_plan">当前套餐</string>
+    
+    <!-- Profile Screen -->
+    <string name="profile_title">我的</string>
+    <string name="membership_info">会员信息</string>
+    <string name="plan_type">套餐类型</string>
+    <string name="expiry_date">到期时间</string>
+    <string name="data_usage_details">流量使用详情</string>
+    <string name="total_data">总流量</string>
+    <string name="used_data">已使用</string>
+    <string name="remaining_data">剩余流量</string>
+    <string name="settings">设置</string>
+    <string name="support">技术支持</string>
+    <string name="about">关于应用</string>
+    <string name="logout">退出登录</string>
+</resources>
