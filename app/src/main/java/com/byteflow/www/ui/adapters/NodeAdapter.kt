@@ -8,10 +8,12 @@ import com.byteflow.www.R
 import com.byteflow.www.databinding.ItemNodeBinding
 import com.byteflow.www.models.ClashProxy
 import com.byteflow.www.utils.SubscriptionManager
+import android.view.View
 
 class NodeAdapter(
     private val onNodeClick: (ClashProxy) -> Unit,
-    private val onTestLatency: (ClashProxy) -> Unit
+    private val onTestLatency: (ClashProxy) -> Unit,
+    private val showSelectedIcon: Boolean = false // 新增参数，默认false
 ) : RecyclerView.Adapter<NodeAdapter.NodeViewHolder>() {
     
     private var nodes = listOf<ClashProxy>()
@@ -67,42 +69,37 @@ class NodeAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         
         fun bind(node: ClashProxy) {
-            binding.nodeNameText.text = node.name
-            binding.nodeInfoText.text = "${node.server}:${node.port}"
-            
-            // 设置加密方法显示
-            binding.nodeMethodText.text = node.cipher ?: "aes-128-gcm"
-            
-            // 解析地区信息
+            // 设置国旗和地区
             val region = parseRegion(node.name)
-            binding.nodeRegionText.text = region
-            
-            // 设置延迟显示
-            binding.nodeLatencyText.text = subscriptionManager.getLatencyText(node)
-            val latencyColor = subscriptionManager.getLatencyColor(node)
-            binding.nodeLatencyText.setTextColor(
-                ContextCompat.getColor(binding.root.context, latencyColor)
-            )
-            
-            // 设置测试按钮
-            binding.nodeTestButton.setOnClickListener {
-                onTestLatency(node)
+            val flagResId = getFlagResId(region)
+            // 直接使用 flagResId，无需判断 != null
+            binding.nodeRegionText.setCompoundDrawablesWithIntrinsicBounds(flagResId, 0, 0, 0)
+            binding.nodeRegionText.compoundDrawablePadding = 6
+            binding.nodeRegionText.text = region.removePrefix("🇭🇰 ").removePrefix("🇨🇳 ").removePrefix("🇺🇸 ").removePrefix("🇲🇾 ").removePrefix("🇫🇷 ")
+            // 设置节点名加粗
+            binding.nodeNameText.text = node.name
+            binding.nodeNameText.setTypeface(null, android.graphics.Typeface.BOLD)
+            // 设置信号格图标
+            val signalRes = when {
+                node.isTestingLatency -> R.drawable.ic_signal_0
+                node.latency == -1 -> R.drawable.ic_signal_0
+                node.latency == 0 -> R.drawable.ic_signal_0
+                node.latency <= 100 -> R.drawable.ic_signal_4
+                node.latency <= 200 -> R.drawable.ic_signal_3
+                node.latency <= 300 -> R.drawable.ic_signal_2
+                else -> R.drawable.ic_signal_1
             }
-            
-            // 设置选中状态
-            val isSelected = node.name == selectedNodeName
-            binding.nodeSelectedIcon.visibility = if (isSelected) 
-                android.view.View.VISIBLE else android.view.View.GONE
-                
-            // 设置选中状态的背景色
-            val backgroundColor = if (isSelected) {
-                ContextCompat.getColor(binding.root.context, R.color.primary_blue_light)
+            binding.nodeSignalIcon.setImageResource(signalRes)
+            // 已移除测速按钮相关逻辑
+            // 选中高亮（只用描边，不显示勾勾）
+            val cardView = binding.root
+            if (showSelectedIcon && node.name == selectedNodeName) {
+                cardView.strokeColor = ContextCompat.getColor(binding.root.context, R.color.primary_blue)
+                cardView.strokeWidth = 4
             } else {
-                ContextCompat.getColor(binding.root.context, R.color.background_primary)
+                cardView.strokeColor = ContextCompat.getColor(binding.root.context, R.color.card_stroke)
+                cardView.strokeWidth = 1
             }
-            binding.nodeCard.setCardBackgroundColor(backgroundColor)
-            
-            // 点击事件
             binding.root.setOnClickListener {
                 onNodeClick(node)
             }
@@ -129,6 +126,31 @@ class NodeAdapter(
                 nodeName.contains("阿根廷") || nodeName.contains("AR") -> "🇦🇷 阿根廷"
                 nodeName.contains("硬编码") -> "🔧 硬编码"
                 else -> "🌐 其他"
+            }
+        }
+
+        private fun getFlagResId(region: String): Int {
+            return when {
+                region.contains("香港") -> R.drawable.flag_hk
+                region.contains("台湾") -> R.drawable.flag_tw
+                region.contains("日本") -> R.drawable.flag_jp
+                region.contains("美国") -> R.drawable.flag_us
+                region.contains("韩国") -> R.drawable.flag_kr
+                region.contains("中国") -> R.drawable.flag_cn
+                // 其它常见国家名全部用默认国旗
+                region.contains("马来西亚") -> R.drawable.ic_flag_default
+                region.contains("新加坡") -> R.drawable.ic_flag_default
+                region.contains("泰国") -> R.drawable.ic_flag_default
+                region.contains("菲律宾") -> R.drawable.ic_flag_default
+                region.contains("越南") -> R.drawable.ic_flag_default
+                region.contains("印尼") -> R.drawable.ic_flag_default
+                region.contains("英国") -> R.drawable.ic_flag_default
+                region.contains("德国") -> R.drawable.ic_flag_default
+                region.contains("法国") -> R.drawable.ic_flag_default
+                region.contains("土耳其") -> R.drawable.ic_flag_default
+                region.contains("巴西") -> R.drawable.ic_flag_default
+                region.contains("阿根廷") -> R.drawable.ic_flag_default
+                else -> R.drawable.ic_flag_default
             }
         }
     }

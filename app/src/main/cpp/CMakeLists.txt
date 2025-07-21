@@ -6,7 +6,7 @@ project("leaf_jni")
 set(CMAKE_CXX_STANDARD 17)
 
 # 添加头文件路径
-include_directories(${CMAKE_SOURCE_DIR}/../../../../leaf-android-libs)
+# include_directories(${CMAKE_SOURCE_DIR}/../../../../leaf-android-libs)
 
 # 添加源文件
 add_library(

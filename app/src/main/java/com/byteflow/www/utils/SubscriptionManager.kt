@@ -127,7 +127,7 @@ class SubscriptionManager {
             val configMap = yaml.load<Map<String, Any>>(StringReader(yamlContent))
             
             val proxies = mutableListOf<ClashProxy>()
-            val proxiesData = configMap["proxies"] as? List<Map<String, Any>>
+            val proxiesData = (configMap["proxies"] as? List<*>)?.filterIsInstance<Map<String, Any>>()
             
             proxiesData?.forEach { proxyMap ->
                 val proxy = ClashProxy(

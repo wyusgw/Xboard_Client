@@ -1,28 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- iOS Blue theme colors -->
-    <color name="primary_blue">#007AFF</color>
+    <color name="primary_blue">#1976D2</color>
     <color name="primary_blue_dark">#0056D6</color>
     <color name="primary_blue_light">#4DA6FF</color>
+    <color name="primary_dark">#0056D6</color>
+    
+    <!-- Ripple colors -->
+    <color name="ripple_color">#1A007AFF</color>
+    
+    <!-- VPN Button colors -->
+    <color name="vpn_button_background">#007AFF</color>
+    <color name="vpn_button_stroke">#4DA6FF</color>
+    <color name="vpn_gradient_start">#007AFF</color>
+    <color name="vpn_gradient_center">#0056D6</color>
+    <color name="vpn_gradient_end">#003D99</color>
+    <color name="vpn_glow_color">#4DA6FF</color>
+    <color name="vpn_icon_container_bg">#1AFFFFFF</color>
+    <color name="vpn_icon_container_stroke">#33FFFFFF</color>
+    <color name="vpn_status_bg">#007AFF</color>
+    
+    <!-- Shield colors -->
+    <color name="shield_gradient_start">#007AFF</color>
+    <color name="shield_gradient_center">#0056D6</color>
+    <color name="shield_gradient_end">#003D99</color>
+    <color name="shield_highlight">#4DA6FF</color>
+    <color name="shield_border">#4DA6FF</color>
+    <color name="shield_glow_color">#4DA6FF</color>
+    <color name="shield_icon_container_bg">#40000000</color>
+    <color name="shield_icon_container_center">#35000000</color>
+    <color name="shield_icon_container_end">#30000000</color>
+    <color name="shield_icon_container_stroke">#20FFFFFF</color>
     
     <!-- Background colors -->
     <color name="background_primary">#FFFFFF</color>
-    <color name="background_secondary">#F2F2F7</color>
+    <color name="background_secondary">#F6F7FB</color>
     <color name="background_tertiary">#FFFFFF</color>
     <color name="background_grouped">#F2F2F7</color>
     
     <!-- Text colors -->
-    <color name="text_primary">#000000</color>
-    <color name="text_secondary">#6D6D80</color>
-    <color name="text_tertiary">#C7C7CC</color>
+    <color name="text_primary">#222222</color>
+    <color name="text_secondary">#888888</color>
+    <color name="text_tertiary">#B0B0B0</color>
     <color name="text_white">#FFFFFF</color>
     
     <!-- System colors -->
     <color name="separator_color">#C6C6C8</color>
     <color name="card_background">#FFFFFF</color>
-    <color name="success_green">#34C759</color>
+    <color name="card_stroke">#E5E5EA</color>
+    <color name="success_green">#43A047</color>
     <color name="warning_orange">#FF9500</color>
-    <color name="error_red">#FF3B30</color>
+    <color name="error_red">#F44336</color>
+    <color name="error">#FF3B30</color>
+    
+    <!-- Progress bar colors -->
+    <color name="progress_background">#E5E5EA</color>
+    <color name="progress_primary">#007AFF</color>
     
     <!-- Tab bar colors -->
     <color name="tab_selected">#007AFF</color>
@@ -38,4 +71,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#8E8E93</color>
     <color name="gray_light">#E5E5EA</color>
+    <color name="chip_latency_default">#E0E0E0</color>
+    <color name="chip_latency_good">#C8E6C9</color>
+    <color name="chip_latency_normal">#FFF9C4</color>
+    <color name="chip_latency_bad">#FFCDD2</color>
+    <color name="chip_latency_testing">#B3E5FC</color>
+    <color name="vpn_switch_on">#007AFF</color>
+    <color name="vpn_switch_off">#E0E0E0</color>
+    <color name="vpn_switch_icon_off">#B0B0B0</color>
+    <color name="divider">#E0E0E0</color>
 </resources>

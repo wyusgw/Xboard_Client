@@ -394,8 +394,7 @@ object ApiClient {
                         uuid = data.optString("uuid", ""),
                         subscribeUrl = data.optString("subscribe_url", ""),
                         resetDay = data.optInt("reset_day").takeIf { !data.isNull("reset_day") },
-                        plan = data.optJSONObject("plan")?.let { planJson ->
-                            // 解析plan对象，如果存在的话
+                        plan = data.optJSONObject("plan")?.let { _ ->
                             null // 这里可以根据实际需要解析
                         }
                     )
@@ -476,7 +475,7 @@ object ApiClient {
     
     suspend fun logout(): Result<Boolean> = withContext(Dispatchers.IO) {
         return@withContext try {
-            val result = makeRequest("/user/logout", "POST", requireAuth = true)
+            val result = makeRequest("/user/logout", "POST", null, true)
             if (result.isSuccess) {
                 val parseResult = parseApiResponse(result.getOrThrow())
                 if (parseResult.isSuccess) {

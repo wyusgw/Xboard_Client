@@ -3,364 +3,343 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_secondary"
+    android:background="#F6F7FB"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="0dp">
 
-        <!-- Header -->
-        <LinearLayout
+        <!-- 顶部间距 -->
+        <View android:layout_width="match_parent" android:layout_height="24dp" />
+
+        <!-- 用户信息卡片（居中） -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            style="@style/IOSPageHeader">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我的"
-                style="@style/IOSPageTitle" />
-        </LinearLayout>
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="#FFFFFF">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <!-- User Info Card -->
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                style="@style/IOSCard">
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:padding="32dp">
+
+                <ImageView
+                    android:id="@+id/user_avatar_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_profile_avatar"
+                    android:background="@drawable/circle_background"
+                    android:contentDescription="用户头像"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/user_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名"
+                    android:textSize="22sp"
+                    android:textColor="#222222"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:id="@+id/user_email_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="user@example.com"
+                    android:textSize="15sp"
+                    android:textColor="#888888" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 会员信息卡片 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="28dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员信息"
+                    android:textSize="18sp"
+                    android:textColor="#222222"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="18dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_profile_avatar"
-                        android:background="@drawable/circle_background"
-                        android:layout_marginEnd="16dp"
-                        android:contentDescription="用户头像" />
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/user_name_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="用户名"
-                            android:textSize="18sp"
-                            android:textColor="@color/text_primary"
-                            android:fontFamily="sans-serif-medium"
-                            android:layout_marginBottom="4dp" />
-
-                        <TextView
-                            android:id="@+id/user_email_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="user@example.com"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_secondary" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Membership Info Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                style="@style/IOSCard">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                        android:text="套餐类型"
+                        android:textSize="15sp"
+                        android:textColor="#888888" />
 
                     <TextView
+                        android:id="@+id/membership_type_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="会员信息"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium"
-                        android:layout_marginBottom="16dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="8dp">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="套餐类型"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_secondary" />
-
-                        <TextView
-                            android:id="@+id/membership_type_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="专业版会员"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_primary"
-                            android:fontFamily="sans-serif-medium" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="到期时间"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_secondary" />
-
-                        <TextView
-                            android:id="@+id/expiry_date_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2024-12-31"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_primary"
-                            android:fontFamily="sans-serif-medium" />
-
-                    </LinearLayout>
-
+                        android:text="会员用户"
+                        android:textSize="15sp"
+                        android:textColor="#1976D2"
+                        android:fontFamily="sans-serif-medium" />
                 </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Data Usage Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                style="@style/IOSCard">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="流量使用详情"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium"
-                        android:layout_marginBottom="16dp" />
-
-                    <!-- Progress Bar -->
-                    <ProgressBar
-                        android:id="@+id/data_usage_progress"
-                        style="@android:style/Widget.ProgressBar.Horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:layout_marginBottom="16dp"
-                        android:progress="25"
-                        android:max="100"
-                        android:progressTint="@color/primary_blue"
-                        android:progressBackgroundTint="@color/separator_color" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="8dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="总流量"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_secondary" />
-
-                            <TextView
-                                android:id="@+id/total_data_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="500GB"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_primary"
-                                android:fontFamily="sans-serif-medium" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="8dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="已使用"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_secondary" />
-
-                            <TextView
-                                android:id="@+id/used_data_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="125GB"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_primary"
-                                android:fontFamily="sans-serif-medium" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="剩余流量"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_secondary" />
-
-                            <TextView
-                                android:id="@+id/remaining_data_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="375GB"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_primary"
-                                android:fontFamily="sans-serif-medium" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Menu Items -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/about_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                style="@style/IOSCard">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp"
                     android:gravity="center_vertical">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_info"
-                        android:layout_marginEnd="16dp"
-                        app:tint="@color/text_secondary"
-                        android:contentDescription="信息图标" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="关于应用"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_primary" />
+                        android:text="到期时间"
+                        android:textSize="15sp"
+                        android:textColor="#888888" />
 
+                    <TextView
+                        android:id="@+id/expiry_date_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2025-07-28"
+                        android:textSize="15sp"
+                        android:textColor="#1976D2"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 流量信息卡片 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="28dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="流量使用详情"
+                    android:textSize="18sp"
+                    android:textColor="#222222"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="18dp" />
+
+                <ProgressBar
+                    android:id="@+id/data_usage_progress"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginBottom="18dp"
+                    android:progress="25"
+                    android:max="100"
+                    android:progressTint="#1976D2"
+                    android:progressBackgroundTint="#E0E0E0"
+                    android:indeterminateOnly="false"
+                    android:clipToOutline="true" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="总流量"
+                        android:textSize="15sp"
+                        android:textColor="#888888" />
+
+                    <TextView
+                        android:id="@+id/total_data_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.0GB"
+                        android:textSize="15sp"
+                        android:textColor="#1976D2"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="已使用"
+                        android:textSize="15sp"
+                        android:textColor="#888888" />
+
+                    <TextView
+                        android:id="@+id/used_data_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="157MB"
+                        android:textSize="15sp"
+                        android:textColor="#222222"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="剩余流量"
+                        android:textSize="15sp"
+                        android:textColor="#888888" />
+
+                    <TextView
+                        android:id="@+id/remaining_data_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="867MB"
+                        android:textSize="15sp"
+                        android:textColor="#43A047"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 菜单卡片 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="32dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <!-- 设置 -->
+                <LinearLayout
+                    android:id="@+id/settingsCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground">
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_settings"
+                        android:contentDescription="设置图标"
+                        android:layout_marginEnd="16dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="设置"
+                        android:textSize="17sp"
+                        android:textColor="#222222"
+                        android:fontFamily="sans-serif-medium" />
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/text_tertiary"
+                        app:tint="#B0B0B0"
                         android:contentDescription="箭头" />
-
                 </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            </com.google.android.material.card.MaterialCardView>
+        <!-- 悬浮退出登录按钮 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="64dp"
+            android:layout_marginBottom="32dp"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="#FFFFFF">
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:id="@+id/logout_card"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                style="@style/IOSCard">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:background="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_logout"
+                    app:tint="#F44336"
+                    android:contentDescription="退出登录图标"
+                    android:layout_marginEnd="4dp" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
+                    android:text="退出登录"
+                    android:textSize="18sp"
+                    android:textColor="#F44336"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_logout"
-                        android:layout_marginEnd="16dp"
-                        app:tint="@color/error_red"
-                        android:contentDescription="退出登录图标" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="退出登录"
-                        android:textSize="16sp"
-                        android:textColor="@color/error_red" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </LinearLayout>
-
+        <View android:layout_width="match_parent" android:layout_height="32dp" />
     </LinearLayout>
-
 </ScrollView>

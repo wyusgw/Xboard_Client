@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.byteflow.www.R
-import com.byteflow.www.data.models.Plan
+import com.byteflow.www.Plan
 import com.byteflow.www.databinding.ItemPlanBinding
 
 class PlanAdapter(
@@ -34,59 +34,67 @@ class PlanAdapter(
         fun bind(plan: Plan) {
             binding.apply {
                 planNameText.text = plan.name
-                planPriceText.text = plan.price
                 
-                // 处理可空的originalPrice
-                if (plan.originalPrice.isNullOrEmpty()) {
-                    planOriginalPriceText.visibility = android.view.View.GONE
+                // 格式化价格
+                val price = if (plan.monthPrice != null && plan.monthPrice > 0) {
+                    val yuan = plan.monthPrice / 100.0
+                    "¥${if (yuan % 1 == 0.0) yuan.toInt() else yuan}/月"
                 } else {
-                    planOriginalPriceText.visibility = android.view.View.VISIBLE
-                    planOriginalPriceText.text = plan.originalPrice
-                    planOriginalPriceText.paintFlags = 
-                        planOriginalPriceText.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+                    "免费"
                 }
+                planPriceText.text = price
                 
-                planDataText.text = plan.data
+                // 隐藏原价显示（API中没有原价字段）
+                planOriginalPriceText.visibility = android.view.View.GONE
                 
-                // Show popular badge
-                popularBadge.visibility = if (plan.isPopular) {
-                    android.view.View.VISIBLE
+                // 格式化流量
+                val data = if (plan.transferEnable > 0) {
+                    val gb = plan.transferEnable / (1024.0 * 1024.0 * 1024.0)
+                    if (gb >= 1) {
+                        "${String.format("%.1f", gb)}GB"
+                    } else {
+                        val mb = plan.transferEnable / (1024.0 * 1024.0)
+                        "${String.format("%.0f", mb)}MB"
+                    }
                 } else {
-                    android.view.View.GONE
+                    "无限制"
                 }
+                planDataText.text = data
                 
-                // Show current plan indicator
-                currentPlanIndicator.visibility = if (plan.isCurrent) {
-                    android.view.View.VISIBLE
-                } else {
-                    android.view.View.GONE
-                }
+                // 隐藏热门标签（API中没有此字段）
+                popularBadge.visibility = android.view.View.GONE
+                
+                // 隐藏当前套餐指示器（需要根据用户状态判断）
+                currentPlanIndicator.visibility = android.view.View.GONE
                 
                 // Setup action button
-                actionButton.text = when {
-                    plan.isCurrent -> "当前套餐"
-                    else -> "选择套餐"
+                actionButton.text = "选择套餐"
+                actionButton.isEnabled = true
+                actionButton.setBackgroundResource(R.drawable.ios_button_background)
+                actionButton.setTextColor(root.context.getColor(R.color.text_white))
+                
+                // 解析特性列表
+                val features = mutableListOf<String>()
+                plan.content.split("\n").forEach { line ->
+                    val trimmed = line.trim()
+                    if (trimmed.startsWith("- ")) {
+                        features.add(trimmed.substring(2))
+                    }
                 }
                 
-                actionButton.isEnabled = !plan.isCurrent
-                
-                if (plan.isCurrent) {
-                    actionButton.setBackgroundResource(R.drawable.ios_button_outline_background)
-                    actionButton.setTextColor(root.context.getColor(R.color.text_secondary))
-                } else {
-                    actionButton.setBackgroundResource(R.drawable.ios_button_background)
-                    actionButton.setTextColor(root.context.getColor(R.color.text_white))
+                // 如果没有找到特性，返回基本信息
+                if (features.isEmpty()) {
+                    features.add("基础功能")
+                    features.add("稳定连接")
+                    features.add("技术支持")
                 }
                 
-                // Build features list
-                val featuresText = plan.features.joinToString("\n") { "• $it" }
+                val featuresText = features.joinToString("\n") { "• $it" }
                 planFeaturesText.text = featuresText
                 
                 // Set click listener
                 actionButton.setOnClickListener {
-                    if (!plan.isCurrent) {
                         onPlanClick(plan)
-                    }
                 }
             }
         }

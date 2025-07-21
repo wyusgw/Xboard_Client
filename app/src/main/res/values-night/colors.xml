@@ -1,35 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- iOS Blue theme colors (dark mode) -->
-    <color name="primary_blue">#0A84FF</color>
-    <color name="primary_blue_dark">#007AFF</color>
-    <color name="primary_blue_light">#64D2FF</color>
+    <!-- iOS Blue theme colors -->
+    <color name="primary_blue">#90CAF9</color>
+    <color name="primary_blue_dark">#0056D6</color>
+    <color name="primary_blue_light">#4DA6FF</color>
     
-    <!-- Background colors (dark mode) -->
+    <!-- Background colors -->
     <color name="background_primary">#000000</color>
-    <color name="background_secondary">#1C1C1E</color>
+    <color name="background_secondary">#18191A</color>
     <color name="background_tertiary">#2C2C2E</color>
     <color name="background_grouped">#1C1C1E</color>
     
-    <!-- Text colors (dark mode) -->
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#8E8E93</color>
-    <color name="text_tertiary">#48484A</color>
+    <!-- Text colors -->
+    <color name="text_primary">#F5F5F5</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_tertiary">#888888</color>
     <color name="text_white">#FFFFFF</color>
     
-    <!-- System colors (dark mode) -->
+    <!-- System colors -->
     <color name="separator_color">#38383A</color>
-    <color name="card_background">#1C1C1E</color>
-    <color name="success_green">#30D158</color>
+    <color name="card_background">#232323</color>
+    <color name="card_stroke">#38383A</color>
+    <color name="success_green">#66BB6A</color>
     <color name="warning_orange">#FF9F0A</color>
-    <color name="error_red">#FF453A</color>
+    <color name="error_red">#FF6E6E</color>
     
-    <!-- Tab bar colors (dark mode) -->
+    <!-- Progress bar colors -->
+    <color name="progress_background">#38383A</color>
+    <color name="progress_primary">#0A84FF</color>
+    
+    <!-- Tab bar colors -->
     <color name="tab_selected">#0A84FF</color>
     <color name="tab_unselected">#8E8E93</color>
     
-    <!-- Status colors for VPN (dark mode) -->
+    <!-- Status colors for VPN -->
     <color name="status_connected">#30D158</color>
     <color name="status_connecting">#FF9F0A</color>
     <color name="status_disconnected">#8E8E93</color>
+    
+    <!-- Compatibility colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#8E8E93</color>
+    <color name="gray_light">#38383A</color>
+    <color name="chip_latency_default">#333A40</color>
+    <color name="chip_latency_good">#2E7D32</color>
+    <color name="chip_latency_normal">#FBC02D</color>
+    <color name="chip_latency_bad">#C62828</color>
+    <color name="chip_latency_testing">#0288D1</color>
+    <color name="divider">#333333</color>
 </resources>

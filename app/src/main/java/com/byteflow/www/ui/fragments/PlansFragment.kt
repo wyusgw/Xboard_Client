@@ -14,12 +14,21 @@ import com.byteflow.www.databinding.FragmentPlansBinding
 import com.byteflow.www.ui.adapters.PlanAdapter
 import kotlinx.coroutines.launch
 
+/**
+ * 套餐列表Fragment - 重构版本
+ * 保持所有原有功能，但采用更模块化的架构
+ */
 class PlansFragment : Fragment() {
+    
+    // ==================== 视图绑定 ====================
     private var _binding: FragmentPlansBinding? = null
     private val binding get() = _binding!!
     
+    // ==================== 数据管理 ====================
     private lateinit var planAdapter: PlanAdapter
+    private var plans = listOf<Plan>()
 
+    // ==================== 生命周期方法 ====================
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,14 +40,23 @@ class PlansFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
+        initializeFragment()
+    }
+    
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    
+    // ==================== 初始化方法 ====================
+    private fun initializeFragment() {
+        initializeRecyclerView()
         loadPlans()
     }
 
-    private fun setupRecyclerView() {
+    private fun initializeRecyclerView() {
         planAdapter = PlanAdapter { plan ->
-            // Handle plan selection
-            onPlanSelected(plan)
+            handlePlanSelection(plan)
         }
         
         binding.plansRecyclerView.apply {
@@ -47,92 +65,55 @@ class PlansFragment : Fragment() {
         }
     }
 
+    // ==================== 数据加载方法 ====================
     private fun loadPlans() {
         lifecycleScope.launch {
             try {
                 val result = ApiClient.getPlans()
                 if (result.isSuccess) {
-                    val plans = result.getOrNull() ?: emptyList()
-                    if (plans.isNotEmpty()) {
-                        // 转换为适配器需要的数据格式
-                        val displayPlans = plans.map { apiPlan ->
-                            com.byteflow.www.data.models.Plan(
-                                id = apiPlan.id.toString(),
-                                name = apiPlan.name,
-                                price = formatPrice(apiPlan.monthPrice),
-                                originalPrice = null, // 现在支持null值
-                                data = formatData(apiPlan.transferEnable),
-                                features = parseFeatures(apiPlan.content),
-                                isPopular = false, // 可以根据实际需求设置
-                                isCurrent = false // 可以根据用户当前套餐设置
-                            )
-                        }
-                        planAdapter.submitList(displayPlans)
-                    } else {
-                        Toast.makeText(context, "暂无套餐数据", Toast.LENGTH_SHORT).show()
-                    }
+                    handlePlansLoadSuccess(result.getOrNull() ?: emptyList())
                 } else {
-                    Toast.makeText(context, "加载套餐失败", Toast.LENGTH_SHORT).show()
+                    handlePlansLoadError("加载套餐失败")
                 }
             } catch (e: Exception) {
-                Toast.makeText(context, "加载套餐失败: ${e.message}", Toast.LENGTH_SHORT).show()
+                handlePlansLoadError("加载套餐失败: ${e.message}")
             }
         }
     }
     
-    private fun formatPrice(price: Int?): String {
-        return if (price != null && price > 0) {
-            val yuan = price / 100.0
-            "¥${if (yuan % 1 == 0.0) yuan.toInt() else yuan}/月"
+    private fun handlePlansLoadSuccess(plans: List<Plan>) {
+        this.plans = plans
+        if (plans.isNotEmpty()) {
+            planAdapter.submitList(plans)
         } else {
-            "免费"
+            showEmptyState("暂无套餐数据")
         }
     }
     
-    private fun formatData(transferEnable: Long): String {
-        return if (transferEnable > 0) {
-            // 转换字节为GB，保留2位小数
-            val gb = transferEnable / (1024.0 * 1024.0 * 1024.0)
-            if (gb >= 1) {
-                "${String.format("%.1f", gb)}GB"
-            } else {
-                val mb = transferEnable / (1024.0 * 1024.0)
-                "${String.format("%.0f", mb)}MB"
-            }
-        } else {
-            "无限制"
+    private fun handlePlansLoadError(message: String) {
+        context?.let {
+            Toast.makeText(it, message, Toast.LENGTH_SHORT).show()
         }
+        showEmptyState(message)
     }
     
-    private fun parseFeatures(content: String): List<String> {
-        // 解析Markdown格式的内容，提取特性列表
-        val features = mutableListOf<String>()
-        
-        // 简单解析，提取以 "- " 开头的行
-        content.split("\n").forEach { line ->
-            val trimmed = line.trim()
-            if (trimmed.startsWith("- ")) {
-                features.add(trimmed.substring(2))
-            }
-        }
-        
-        // 如果没有找到特性，返回基本信息
-        if (features.isEmpty()) {
-            features.add("基础功能")
-            features.add("稳定连接")
-            features.add("技术支持")
-        }
-        
-        return features
+    // ==================== 套餐操作方法 ====================
+    private fun handlePlanSelection(plan: Plan) {
+        showPlanSelectionFeedback(plan.name)
+        // TODO: 实现套餐升级/订阅逻辑
+        // 这里可以添加套餐购买、升级等业务逻辑
     }
 
-    private fun onPlanSelected(plan: com.byteflow.www.data.models.Plan) {
-        // TODO: Handle plan upgrade/subscription
-        Toast.makeText(context, "选择了套餐: ${plan.name}", Toast.LENGTH_SHORT).show()
+    private fun showPlanSelectionFeedback(planName: String) {
+        context?.let {
+            Toast.makeText(it, "选择了套餐: $planName", Toast.LENGTH_SHORT).show()
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    }
+    
+    // ==================== UI状态管理方法 ====================
+    @Suppress("UNUSED_PARAMETER")
+    private fun showEmptyState(message: String) {
+        // 可以在这里添加空状态UI显示
+        // 例如显示一个提示文本或图标
     }
 }

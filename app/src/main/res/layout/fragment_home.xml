@@ -1,78 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_secondary"
-    android:fillViewport="true">
+    android:background="@color/background_primary"
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <!-- 主要内容区域 -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- Header -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            style="@style/IOSPageHeader">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="首页"
-                style="@style/IOSPageTitle" />
-        </LinearLayout>
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingTop="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingHorizontal="20dp">
 
-            <!-- Connection Status Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                style="@style/IOSCard">
-
+            <!-- 顶部欢迎区域 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="40dp">
-
-                    <!-- Connection Status Circle -->
-                    <FrameLayout
-                        android:id="@+id/connection_button"
-                        android:layout_width="140dp"
-                        android:layout_height="140dp"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginTop="16dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="@drawable/connection_button_selector"
-                        android:elevation="8dp">
-
-                        <ImageView
-                            android:id="@+id/connection_status_icon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_power"
-                            android:contentDescription="连接状态" />
-                            
-                    </FrameLayout>
+                android:layout_marginBottom="32dp">
 
                     <TextView
-                        android:id="@+id/connection_status_text"
+                        android:id="@+id/welcome_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="未连接"
-                        android:textSize="28sp"
+                    android:text="欢迎回来"
+                    android:textSize="32sp"
                         android:textColor="@color/text_primary"
                         android:fontFamily="sans-serif-light"
                         android:layout_marginBottom="8dp" />
@@ -80,76 +41,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="点击上方按钮开始连接"
+                    android:text="选择节点开始您的安全之旅"
                         android:textSize="16sp"
-                        android:textColor="@color/text_secondary" />
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="sans-serif" />
 
                 </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Data Usage Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                style="@style/IOSCard">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="流量使用情况"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium"
-                        android:layout_marginBottom="16dp" />
-
-                    <!-- Progress Bar -->
-                    <ProgressBar
-                        android:id="@+id/data_usage_progress"
-                        style="@android:style/Widget.ProgressBar.Horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="12dp"
-                        android:layout_marginBottom="16dp"
-                        android:progress="25"
-                        android:max="100"
-                        android:progressDrawable="@drawable/ios_progress_bar" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/data_used_text"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="已使用: 2.5 GB"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_secondary" />
-
-                        <TextView
-                            android:id="@+id/data_remaining_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="剩余: 97.5 GB"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_secondary" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Server Selection Card -->
+            
+            <!-- 服务器选择卡片（当前节点卡片） -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/server_selection_card"
                 android:layout_width="match_parent"
@@ -157,70 +56,450 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                style="@style/IOSCard">
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/card_background"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/primary_blue">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="20dp"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_servers"
-                        android:layout_marginEnd="16dp"
-                        app:tint="@color/primary_blue"
-                        android:contentDescription="服务器图标" />
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:gravity="center_vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="当前节点"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_secondary"
-                            android:layout_marginBottom="4dp" />
+                        <!-- 大国旗圆形背景 -->
+                        <FrameLayout
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:background="@drawable/circle_background"
+                            android:layout_marginEnd="16dp">
 
-                        <TextView
-                            android:id="@+id/selected_server_text"
-                            android:layout_width="wrap_content"
+                            <ImageView
+                                android:id="@+id/nodeFlagImageView"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_gravity="center"
+                                android:scaleType="centerCrop"
+                                android:background="@drawable/circle_background"
+                                android:clipToOutline="true"
+                                android:contentDescription="@string/flag" />
+                        </FrameLayout>
+
+                        <!-- 主信息区 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="香港-01"
-                            android:textSize="16sp"
-                            android:textColor="@color/text_primary"
-                            android:fontFamily="sans-serif-medium" />
-                            
-                        <TextView
-                            android:id="@+id/subscription_status_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="硬编码模式"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_tertiary"
-                            android:layout_marginTop="2dp" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="当前节点"
+                                android:textSize="13sp"
+                                android:textColor="@color/text_tertiary"
+                                android:layout_marginBottom="2dp" />
+
+                            <TextView
+                                android:id="@+id/selected_server_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="香港-01"
+                                android:textSize="22sp"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:layout_marginBottom="4dp" />
+
+                            <TextView
+                                android:id="@+id/subscription_status_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <!-- 箭头icon -->
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="@color/primary_blue"
+                            android:contentDescription="箭头"
+                            android:layout_marginStart="8dp" />
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/text_tertiary"
-                        android:contentDescription="箭头" />
+                    <!-- 流量信息区域 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingBottom="18dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp">
+                        <!-- 流量使用 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="流量使用"
+                                android:textSize="13sp"
+                                android:textColor="@color/text_secondary"
+                                android:fontFamily="sans-serif-medium"
+                                android:layout_marginBottom="2dp" />
+                            <TextView
+                                android:id="@+id/data_used_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="126 MB"
+                                android:textSize="20sp"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                android:layout_marginBottom="2dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="已使用"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_tertiary"
+                                android:fontFamily="sans-serif" />
+                        </LinearLayout>
+                        <!-- 分隔线 -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="48dp"
+                            android:layout_marginHorizontal="12dp"
+                            android:background="@color/divider" />
+                        <!-- 剩余流量 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="剩余流量"
+                                android:textSize="13sp"
+                                android:textColor="@color/text_secondary"
+                                android:fontFamily="sans-serif-medium"
+                                android:layout_marginBottom="2dp" />
+                            <TextView
+                                android:id="@+id/data_remaining_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="879 MB"
+                                android:textSize="20sp"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                android:layout_marginBottom="2dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="剩余"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_tertiary"
+                                android:fontFamily="sans-serif" />
+                        </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- VPN开启按钮区域 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp">
+
+                <!-- 主VPN盾牌按钮 -->
+                <FrameLayout
+                    android:id="@+id/vpn_button_container"
+                    android:layout_width="180dp"
+                    android:layout_height="216dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackgroundBorderless">
+
+                    <!-- 盾牌背景 -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/shield_background"
+                        android:scaleType="fitXY" />
+
+                    <!-- 外圈光晕效果 -->
+                    <ImageView
+                        android:id="@+id/vpn_button_glow"
+                        android:layout_width="200dp"
+                        android:layout_height="236dp"
+                        android:src="@drawable/shield_glow"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center"
+                        android:alpha="0.0" />
+
+                    <!-- 盾牌内部内容：图标+文字 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:paddingTop="32dp"
+                        android:paddingBottom="32dp">
+
+                        <!-- 图标（未启动VPN时显示） -->
+                        <ImageView
+                            android:id="@+id/vpn_button_icon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_power"
+                            app:tint="@color/text_white"
+                            android:layout_gravity="center_horizontal" />
+
+                        <!-- 连接时长显示（连接时替换图标） -->
+                        <TextView
+                            android:id="@+id/vpn_uptime_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00:00"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_white"
+                            android:fontFamily="monospace"
+                            android:visibility="gone"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/vpn_button_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:text="断开连接"
+                            android:textSize="15sp"
+                            android:textColor="@color/text_white"
+                            android:fontFamily="sans-serif-medium"
+                            android:shadowColor="#40000000"
+                            android:shadowDx="0"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:alpha="0.98"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <!-- 连接状态信息 -->
+                <LinearLayout
+                    android:id="@+id/vpn_status_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone">
+
+                    <!-- 状态指示器 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="@drawable/vpn_status_background"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp">
+
+                        <View
+                            android:id="@+id/vpn_status_dot"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/vpn_status_dot" />
+
+                        <TextView
+                            android:id="@+id/vpn_status_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="连接中..."
+                            android:textSize="14sp"
+                            android:textColor="@color/text_white"
+                            android:fontFamily="sans-serif-medium" />
+
+                    </LinearLayout>
+
+                    <!-- 连接信息 -->
+                    <TextView
+                        android:id="@+id/vpn_connection_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text=""
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 快速操作区域 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/card_background"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/card_stroke">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="快速操作"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- 速度测试按钮 -->
+                        <LinearLayout
+                            android:id="@+id/speed_test_button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_speed_test"
+                                app:tint="@color/primary_blue"
+                                android:contentDescription="速度测试"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="速度测试"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                        </LinearLayout>
+
+                        <!-- 设置按钮 -->
+                        <LinearLayout
+                            android:id="@+id/settings_button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_settings"
+                                app:tint="@color/primary_blue"
+                                android:contentDescription="设置"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="设置"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                        </LinearLayout>
+
+                        <!-- 支持按钮 -->
+                        <LinearLayout
+                            android:id="@+id/support_button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_support"
+                                app:tint="@color/primary_blue"
+                                android:contentDescription="支持"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="支持"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                        </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
 
-</ScrollView>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 底部间距 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

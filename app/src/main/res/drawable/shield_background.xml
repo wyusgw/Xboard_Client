@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="240dp"
+    android:viewportWidth="200"
+    android:viewportHeight="240">
+    
+    <!-- 盾牌主体 -->
+    <path
+        android:fillColor="@color/shield_gradient_start"
+        android:pathData="M100,20 L180,60 L180,140 C180,180 140,220 100,240 C60,220 20,180 20,140 L20,60 Z" />
+    
+    <!-- 盾牌内部渐变 -->
+    <path
+        android:fillColor="@color/shield_gradient_center"
+        android:pathData="M100,25 L175,62 L175,140 C175,178 138,215 100,235 C62,215 25,178 25,140 L25,62 Z" />
+    
+    <!-- 盾牌中心高光 -->
+    <path
+        android:fillColor="@color/shield_gradient_end"
+        android:pathData="M100,35 L165,70 L165,140 C165,172 133,205 100,225 C67,205 35,172 35,140 L35,70 Z" />
+    
+    <!-- 盾牌顶部高光 -->
+    <path
+        android:fillColor="@color/shield_highlight"
+        android:pathData="M100,25 L160,55 L160,85 C160,95 130,105 100,105 C70,105 40,95 40,85 L40,55 Z" />
+    
+    <!-- 盾牌边框 -->
+    <path
+        android:strokeColor="@color/shield_border"
+        android:strokeWidth="1.5"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M100,20 L180,60 L180,140 C180,180 140,220 100,240 C60,220 20,180 20,140 L20,60 Z" />
+</vector> 

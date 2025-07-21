@@ -41,4 +41,5 @@
     <string name="support">技术支持</string>
     <string name="about">关于应用</string>
     <string name="logout">退出登录</string>
+    <string name="flag">国旗</string>
 </resources>

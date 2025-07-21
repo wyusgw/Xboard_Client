@@ -16,6 +16,9 @@ import com.byteflow.www.ui.fragments.ProfileFragment
 import com.byteflow.www.utils.SubscriptionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -38,7 +41,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupSystemUI()
         setupBottomNavigation()
+        setupFragmentListener()
         
         // Show home fragment by default
         if (savedInstanceState == null) {
@@ -48,16 +53,34 @@ class MainActivity : AppCompatActivity() {
         // 应用启动时异步更新订阅（只有在登录状态下才更新）
         updateSubscriptionOnStartup()
     }
+    
+    override fun onResume() {
+        super.onResume()
+        updateBottomNavigationVisibility()
+    }
+
+    private fun setupSystemUI() {
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+        window.navigationBarColor = android.graphics.Color.TRANSPARENT
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            window.insetsController?.apply {
+                hide(WindowInsets.Type.navigationBars() or WindowInsets.Type.statusBars())
+                systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
+    }
 
     private fun setupBottomNavigation() {
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
+        binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
                 R.id.nav_home -> {
                     showFragment(HomeFragment(), "HOME")
-                    true
-                }
-                R.id.nav_servers -> {
-                    showFragment(NodeListFragment(), "NODES")
                     true
                 }
                 R.id.nav_plans -> {
@@ -110,5 +133,28 @@ class MainActivity : AppCompatActivity() {
             .setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_NONE)
             .replace(R.id.fragment_container, fragment, tag)
             .commitNow()
+
+        // 控制底部导航栏显示/隐藏
+        updateBottomNavigationVisibility()
+    }
+
+    private fun setupFragmentListener() {
+        // 监听Fragment变化来控制底部导航栏
+        supportFragmentManager.addOnBackStackChangedListener {
+            updateBottomNavigationVisibility()
+        }
+    }
+    
+    private fun updateBottomNavigationVisibility() {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        when (currentFragment) {
+            is com.byteflow.www.ui.fragments.SettingsFragment,
+            is com.byteflow.www.ui.fragments.NodeListFragment -> {
+                binding.bottomNavigation.visibility = View.GONE
+            }
+            else -> {
+                binding.bottomNavigation.visibility = View.VISIBLE
+            }
+        }
     }
 }

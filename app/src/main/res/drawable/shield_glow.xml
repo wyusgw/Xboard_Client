@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="236dp"
+    android:viewportWidth="200"
+    android:viewportHeight="236">
+    
+    <!-- 盾牌光晕 -->
+    <path
+        android:fillColor="@color/shield_glow_color"
+        android:pathData="M100,5 L190,50 L190,150 C190,205 145,250 100,270 C55,250 10,205 10,150 L10,50 Z" />
+    
+    <!-- 内部透明区域 -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M100,15 L185,55 L185,150 C185,195 145,235 100,255 C55,235 15,195 15,150 L15,55 Z" />
+</vector> 

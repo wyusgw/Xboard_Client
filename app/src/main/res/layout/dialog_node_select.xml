@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/card_background"
+    android:padding="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/card_background"
+        android:padding="16dp"
+        android:elevation="8dp"
+        android:clipToOutline="true"
+        android:outlineProvider="background">
+
+        <!-- 顶部标题 -->
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="选择节点"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:textColor="@color/text_primary" />
+
+        <!-- 搜索框 -->
+        <EditText
+            android:id="@+id/node_search_edit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="搜索节点/地区/国家"
+            android:background="@drawable/edit_text_background"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:textSize="15sp"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:inputType="text"
+            android:singleLine="true"
+            android:layout_marginBottom="12dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/node_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:overScrollMode="ifContentScrolls"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <ProgressBar
+                android:id="@+id/test_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="@color/primary_blue"
+                android:progressBackgroundTint="@color/progress_background"
+                android:visibility="gone"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp"
+                android:clipToOutline="true" />
+
+            <TextView
+                android:id="@+id/test_progress_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginBottom="2dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/test_all_button"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="全部测试延迟"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/primary_blue"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ios_button_background" />
+
+        <!-- 删除重试失败节点按钮，不再显示 -->
+
+    </LinearLayout>
+
+</FrameLayout> 
